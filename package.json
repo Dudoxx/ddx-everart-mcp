@@ -1,6 +1,6 @@
 {
   "name": "@dudoxx/everart-mcp",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "Advanced EverArt MCP server with img2img, custom model training, and full API capabilities - Refactored and enhanced by Dudoxx UG",
   "type": "module",
   "main": "build/index.js",
@@ -94,9 +94,9 @@
   },
   "packageManager": "pnpm@9.0.0",
   "build": {
-    "count": 0,
-    "date": "2025-10-22T10:57:00.000Z",
-    "commit": "initial"
+    "count": 3,
+    "date": "2025-10-22T09:40:50.632Z",
+    "commit": "ab8dd99"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
