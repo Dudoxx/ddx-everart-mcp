@@ -1,0 +1,117 @@
+{
+  "name": "@dudoxx/everart-mcp",
+  "version": "1.0.0",
+  "description": "Advanced EverArt MCP server with img2img, custom model training, and full API capabilities - Refactored and enhanced by Dudoxx UG",
+  "type": "module",
+  "main": "build/index.js",
+  "bin": {
+    "ddx-everart-mcp": "build/index.js"
+  },
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "NODE_ENV=production pnpm run lint && node scripts/version-manager.mjs build-increment && tsc && chmod +x build/index.js",
+    "build:prod": "NODE_ENV=production pnpm run lint && node scripts/version-manager.mjs build-increment && tsc && chmod +x build/index.js",
+    "start": "node build/index.js",
+    "lint": "pnpm exec eslint src/**/*.ts",
+    "lint:fix": "pnpm exec eslint src/**/*.ts --fix",
+    "type-check": "pnpm exec tsc --noEmit",
+    "check": "pnpm run lint && pnpm run type-check",
+    "test": "pnpm exec jest",
+    "test:watch": "pnpm exec jest --watch",
+    "test:coverage": "pnpm exec jest --coverage",
+    "version": "node scripts/version-manager.mjs show",
+    "version:patch": "node scripts/version-manager.mjs increment patch",
+    "version:minor": "node scripts/version-manager.mjs increment minor",
+    "version:major": "node scripts/version-manager.mjs increment major",
+    "version:bump": "node scripts/version-bump.mjs",
+    "changelog:update": "node scripts/update-changelog.mjs",
+    "changelog:preview": "node scripts/update-changelog.mjs --dry-run",
+    "changelog:since": "node scripts/update-changelog.mjs --since",
+    "release": "pnpm run version:bump && pnpm run changelog:update",
+    "release:preview": "pnpm run version:bump && pnpm run changelog:preview",
+    "postbuild": "node scripts/version-manager.mjs show",
+    "prepare": "husky"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "everart",
+    "ai",
+    "image-generation",
+    "flux",
+    "stable-diffusion",
+    "img2img",
+    "txt2img",
+    "model-training",
+    "dudoxx"
+  ],
+  "author": {
+    "name": "Dudoxx UG",
+    "email": "dev@dudoxx.com",
+    "url": "https://dudoxx.com"
+  },
+  "contributors": [
+    {
+      "name": "Nick Baumann",
+      "url": "https://github.com/nickbaumann98"
+    }
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dudoxx/ddx-everart-mcp.git"
+  },
+  "homepage": "https://github.com/dudoxx/ddx-everart-mcp#readme",
+  "bugs": {
+    "url": "https://github.com/dudoxx/ddx-everart-mcp/issues"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "0.5.0",
+    "everart": "^1.0.0",
+    "node-fetch": "^3.3.2",
+    "open": "^9.1.0",
+    "sharp": "^0.33.5",
+    "svgo": "^3.3.2"
+  },
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24",
+    "@typescript-eslint/eslint-plugin": "^8.21.0",
+    "@typescript-eslint/parser": "^8.21.0",
+    "eslint": "^9.38.0",
+    "eslint-config-prettier": "^10.1.0",
+    "eslint-plugin-prettier": "^5.2.5",
+    "husky": "^9.1.7",
+    "jest": "^30.2.0",
+    "lint-staged": "^16.2.4",
+    "prettier": "^3.6.2",
+    "ts-jest": "^29.4.5",
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "packageManager": "pnpm@9.0.0",
+  "build": {
+    "count": 0,
+    "date": "2025-10-22T10:57:00.000Z",
+    "commit": "initial"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md}": [
+      "prettier --write"
+    ]
+  },
+  "attribution": {
+    "originalAuthor": "Nick Baumann",
+    "originalRepository": "https://github.com/nickbaumann98/everart-forge-mcp",
+    "license": "MIT",
+    "refactoredBy": "Dudoxx UG",
+    "refactoredDate": "2025-10-22"
+  }
+}
