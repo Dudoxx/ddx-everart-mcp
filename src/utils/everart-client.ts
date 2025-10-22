@@ -5,7 +5,8 @@
 import { createRequire } from 'module';
 
 const require = createRequire(import.meta.url);
-const EverArt = require('everart');
+const everartModule = require('everart');
+const EverArt = everartModule.default || everartModule;
 
 export interface EverArtClient {
   v1: {
