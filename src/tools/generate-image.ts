@@ -220,20 +220,26 @@ export async function handleGenerateImage(args: Record<string, unknown>): Promis
     // Get EverArt client
     const client = getClient();
 
+    // Prepare options for API call
+    const apiOptions = {
+      imageCount: image_count,
+      height: height,
+      width: width,
+      ...(image ? { image: image } : {}),
+      // Add extra fields for specific models if needed
+      ...(modelInput === '8000' ? { variant: 'vector' } : {}),
+    };
+
+    // Log the request for debugging
+    console.error(`🔧 API Request: model=${modelInput}, type=${type}, options=`, apiOptions);
+
     // Generate image with retry logic
     let generation;
     let retryCount = 0;
 
     while (retryCount < MAX_RETRIES) {
       try {
-        generation = await client.v1.generations.create(modelInput, prompt, type, {
-          imageCount: image_count,
-          height: height,
-          width: width,
-          ...(image ? { image: image } : {}),
-          // Add extra fields for specific models if needed
-          ...(modelInput === '8000' ? { variant: 'vector' } : {}),
-        });
+        generation = await client.v1.generations.create(modelInput, prompt, type, apiOptions);
         break;
       } catch (error) {
         if (retryCount >= MAX_RETRIES - 1) throw error;
